@@ -1,0 +1,19 @@
+.DS_Store
+
+# Editor directories and files
+.project
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw*
+
+.idea
+.vscode
+runtime/*
+
+public/uploads/*
+.env
+const.php
+vendor/*

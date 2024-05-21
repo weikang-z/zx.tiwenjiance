@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>变量展示</title>
+    <link rel="stylesheet" href="/assets/css/bootstrap.css">
+
+    <style>
+        html, body {
+            margin: auto;
+            padding: 20px;
+            font-size: 22px;
+            font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+        }
+
+    </style>
+
+</head>
+<body>
+<div>
+    {foreach $vars as $key => $value}
+        <div class="panel panel-default">
+            <div class="panel-heading"><span class="label label-info">Type: <?= gettype($value)?></span></div>
+            <div class="panel-body">
+               {php} 
+                    dump($value);
+               {/php}
+            </div>
+        </div>
+    {/foreach}
+</div>
+</body>
+</html>

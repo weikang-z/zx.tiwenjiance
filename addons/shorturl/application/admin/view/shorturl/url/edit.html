@@ -1,0 +1,82 @@
+<form id="edit-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Title')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-title" data-rule="required; title" placeholder="填写名称方便管理" class="form-control" name="row[title]" type="text" value="{$row.title|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Url')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-url" data-rule="required; url" placeholder="填写要跳转的网址（开头带http://或https://）" class="form-control" name="row[url]" type="text" value="{$row.url|htmlentities}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Expire')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            {:build_radios('row[expire]', ['1' => __('Normal'), '0' => __('Hidden')], $row['expire'])}
+        </div>
+    </div> 
+
+    <div class="form-group" id="expire" style="display: none;">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Expiretime')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class='input-group date datetimepicker'>
+                <input type='text' name="row[expiretime]" data-date-format="YYYY-MM-DD HH:mm:ss" value="{$row.expiretime_text}" class="form-control datetimepicker"/>
+                <span class="input-group-addon">
+                    <span class="fa fa-calendar"></span>
+                </span>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('From QQ')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            {:build_radios('row[allow_qq]', ['1'=>__('Allow'), '0'=>__('Forbid')], $row['allow_qq'])}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('From Wechat')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            {:build_radios('row[allow_wechat]', ['1'=>__('Allow'), '0'=>__('Forbid')], $row['allow_wechat'])}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('From PC Browser')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            {:build_radios('row[allow_pc_browser]', ['1'=>__('Allow'), '0'=>__('Forbid')], $row['allow_pc_browser'])}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('From Mobile Browser')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            {:build_radios('row[allow_mobile_browser]', ['1'=>__('Allow'), '0'=>__('Forbid')], $row['allow_mobile_browser'])}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Memo')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-memo" data-rule="memo" class="form-control" placeholder="" name="row[memo]" type="text" value="{$row.memo|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Status')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            {:build_radios('row[status]', ['1' => __('Normal'), '0' => __('Hidden')], $row['status'])}
+        </div>
+    </div>
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>

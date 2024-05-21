@@ -1,0 +1,188 @@
+page {
+  background: #f1f1f1;
+}
+
+.container {
+  width: 100%;
+}
+
+.template1 {
+  width: 700rpx;
+  height: 200rpx;
+  background-color: #fff;
+  border-radius: 5px;
+  margin: 25rpx auto;
+  z-index: 1
+}
+.template1 .navigator {
+  height: 200rpx;
+}
+.template1 .icon {
+  width: 140rpx;
+  height: 140rpx;
+  vertical-align: middle;
+  margin-top: 15px;
+  margin-left: 10px;
+  border-radius: 50%;
+}
+.template1 .app-info {
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: 15px;
+  margin-left: 20rpx;
+  max-width: 468rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.template1 .app-info .title {
+  font-size: 40rpx;
+  font-weight: 700;
+}
+.template1 .app-info .desc {
+  font-size: 26rpx;
+  font-weight: 400;
+  color: #ccc;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 模板二 */
+.template2 {
+  overflow: hidden;
+  position: relative;
+  border-radius: 8rpx;
+  margin: 25rpx;
+  width: 700rpx;
+}
+.template2 .background {
+  width: 100%;
+  height: 350rpx;
+  vertical-align: bottom;
+}
+.template2::before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border-top-left-radius: 8rpx;
+  border-bottom-left-radius: 8rpx;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0, rgba(0, 0, 0, 0.2) 100%);
+}
+.template2 .app-item {
+  color: #fff;
+  padding: 0 30rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  box-sizing: border-box;
+}
+.template2 .app-info {
+  position: absolute;
+  width: 100%;
+  left: 30rpx;
+  bottom: 10rpx;
+  line-height: 50rpx;
+  font-size: 18rpx;
+}
+.template2 .icon {
+  width: 70rpx;
+  height: 70rpx;
+  float: left;
+  margin-right: 15rpx;
+  margin-top: 10rpx;
+  border-radius: 50%;
+}
+.template2 .title {
+  font-size: 36rpx;
+  font-weight: 700;
+  text-shadow: 2rpx 2rpx rgba(0, 0, 0, 0.4);
+  width: 560rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+.template2 .desc {
+  font-size: 28rpx;
+  font-weight: 500;
+  width: 560rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 模板三 */
+.template3 {
+  height: 300rpx;
+  position: relative;
+  margin: 25rpx auto;
+  width: 700rpx;
+}
+.template3 .app-item {
+  height: 300rpx;
+  position: relative;
+}
+.template3 .app-item::before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 1) 0, rgba(0, 0, 0, 0.2) 100%);
+  border-radius: 10rpx;
+}  
+.template3 .background {
+  width: 100%;
+  height: 100%;
+  border-radius: 10rpx;
+  opacity: 0.7
+}
+.template3 .app-info {
+  margin-top: -324rpx;
+  height: 300rpx;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  position: relative;
+  -webkit-align-content: center;
+  align-content: center;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+.template3 .title {
+  font-size: 48rpx;
+  font-family: PingFangSC-Semibold;
+  color: rgba(255,255,255,1);
+  line-height: 65rpx;
+}
+.template3 .desc {
+  font-size: 32rpx;
+  font-family: PingFangSC-Semibold;
+  color: rgba(255,255,255,0.7);
+  line-height: 50rpx;
+}
+.template3 .open {
+  margin-top: 48rpx;
+  border-radius: 34rpx;
+  border-style: solid; border-width: 2rpx;
+  border-color: white;
+  font-size: 30rpx;
+  font-family: PingFangSC-Regular;
+  color: rgba(255,255,255,1);
+  line-height: 38rpx;
+  padding: 12rpx 60rpx;
+  background: #17ba9b;
+}

@@ -1,0 +1,38 @@
+<view class='container'>
+  <block a:if="{{template == 1}}">
+    <view class="template1" a:for="{{applist}}" data-index="{{index}}" onTap="toJump">
+      <image class='icon' src='{{item.icon}}'></image>
+      <view class='app-info'>
+        <text class='title'>{{item.title}}</text>
+        <view class='desc'>{{item.description}}</view>
+      </view>
+    </view>
+  </block>
+
+  <block a:if="{{template == 2}}">
+  <view class="template2" a:for="{{applist}}" data-index="{{index}}" onTap="toJump">
+    <image class="background" src="{{item.background}}"></image>
+    <view class="app-item">
+      <view class="app-info">
+        <image class="icon" src="{{item.icon}}"></image>
+        <view class="title">{{item.title}}</view>
+        <view class="desc">{{item.description}}</view>
+      </view>
+    </view>
+  </view>
+  </block>
+
+  <block a:if="{{template == 3}}">
+  <view class="template3" a:for="{{applist}}" data-index="{{index}}" onTap="toJump">
+    <view class="app-item">
+      <image class="background" mode="aspectFill" src="{{item.background}}"></image>
+      <view class="app-info">
+        <label class="title">{{item.title}}</label>
+        <label class="desc">{{item.description}}</label>
+        <label class="open">立即打开</label>
+      </view>
+    </view>
+  </view>
+  </block>
+
+</view>

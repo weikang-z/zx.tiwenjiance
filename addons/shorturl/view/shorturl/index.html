@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html class="lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html> <!--<![endif]-->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <title>{:__('shorturl')}</title>
+    <link rel="stylesheet" media="screen" href="__CDN__/assets/css/bootstrap.min.css"/>
+	<style media="screen">
+        html {
+        	font-size: 14px;
+        }
+        body, h1, h2, h3, h4, h5, h6, p {
+        	margin: 0
+        }
+        a {
+        	text-decoration: none;
+        }
+        .container {
+        	background-color: #fff;
+        }
+        .txt-center {
+        	text-align: center
+        }
+        .txt-title {
+        	margin-bottom: 10px;
+        	font-size: 1.6rem;
+        }
+        .container-404 {
+        	padding: 52px 29px 0;
+        }
+        .icon__warning {
+        	display: inline-block;
+        	margin-bottom: 17px;
+        	width: 132px;
+        	height: 160px;
+        	background: url(__ADDON__/images/notice_icon.png) no-repeat center center/132px;
+        }
+        .txt-msg {
+        	color: #666!important;
+        	font-size: 1.1rem;
+        	line-height: 2rem;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="container-404 txt-center">
+        <i class="icon__warning"></i>
+        <h1 class="txt-title">短网址不存在</h1>
+        <div class="txt-msg">访问时间：{php}echo date('Y-m-d H:i:s'){/php}</div>
+        <div class="txt-msg">访问网址：{php}echo request()->url(true);{/php}</div>
+    </div>
+</div>
+<script type="text/javascript" src="__CDN__/assets/libs/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="__CDN__/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<style type="text/css">
+    #miniappjump #subaction {width:100%;}
+    #miniappjump .select-striped > option:nth-of-type(odd) {background-color: #f9f9f9;}
+    #miniappjump .dropdown-menu ul {margin:-3px 0;}
+    #miniappjump .dropdown-menu ul li {margin:3px 0;}
+    #miniappjump .dropdown-menu.row .col-xs-12 {padding:0 5px;}
+    #appidlist {font-size:12px; color:#444; border: 1px solid #999;}
+</style>
+<div class="panel panel-default panel-intro">
+    {:build_heading()}
+
+    <div class="panel-body">
+        <div id="miniappjump" class="tab-content">
+            <div class="tab-pane fade active in" id="one">
+                <div class="widget-body no-padding">
+                    <div class="row">
+                        <div class="col-xs-8 text-left">
+                                <div class="btn-group">
+                                    <button data-toggle="dropdown" class="btn btn-primary btn-embossed dropdown-toggle" type="button">{:__('SelectPlatform')} <span class="caret"></span></button>
+                                    <div class="row dropdown-menu pull-left" style="min-width: 130px; width: 130px;">
+                                        <div class="col-xs-12">
+                                            <ul id="subaction" class="list-unstyled">
+                                                <li><input type="button" value="{:__('Wxapp')}" rel="wxapp" class="btn btn-primary btn-embossed btn-sm btn-block"/></li>
+                                                <li><input type="button" value="{:__('Aliapp')}" rel="aliapp" class="btn btn-primary btn-embossed btn-sm btn-block"/></li>
+                                                <li><input type="button" value="{:__('Baiduapp')}" rel="baiduapp" class="btn btn-primary btn-embossed btn-sm btn-block" /></li>
+                                                <li><input type="button" value="{:__('Toutiaoapp')}" rel="toutiaoapp" class="btn btn-primary btn-embossed btn-sm btn-block"/></li>
+                                                <li><input type="button" value="{:__('Qqapp')}" rel="qqapp" class="btn btn-primary btn-embossed btn-sm btn-block" /></li>
+                                            </ul>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+
+                                </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 10px;">
+                        <textarea cols="60" rows="23" class="form-control" id="appidlist"></textarea>
+                    </div>
+
+                    <input type="button" class="btn btn-success btn-embossed" data-clipboard-target="#appidlist" id="Jcopy" value="{:__('Copy')}" />
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

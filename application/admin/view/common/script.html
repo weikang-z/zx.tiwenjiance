@@ -1,0 +1,5 @@
+<script src="__CDN__/assets/js/require{$Think.config.app_debug?'':'.min'}.js" data-main="__CDN__/assets/js/require-backend{$Think.config.app_debug?'':'.min'}.js?v={$site.version|htmlentities}"></script>
+
+{if isset($vue_file_path)}
+<script src="{$vue_file_path}"></script>
+{/if}

@@ -1,0 +1,29 @@
+<?php
+declare (strict_types = 1);
+
+namespace app\api\model;
+
+use think\Model;
+
+/**
+ * {%tablecomment%}
+ * ENGINE           :       {%ENGINE%}
+ * TABLE_NAME       :       {%TABLE_NAME%}
+ * CREATE_TIME      :       {%CREATE_TIME%}
+ * TABLE_COLLATION  :       {%TABLE_COLLATION%}
+ {%property%}
+ * @mixin \think\Model
+ */
+class {%modelname%} extends Model
+{
+    protected $table = "{%table_name%}";
+
+    protected $json = [{%jsonfield%}];
+
+    protected $jsonAssoc = true;
+
+    protected $hidden = [];
+
+    protected $append = [];
+
+}

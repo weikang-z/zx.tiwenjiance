@@ -1,0 +1,48 @@
+{
+    "name": "ekr123/backend",
+    "description": "the fastest admin framework",
+    "type": "project",
+    "keywords": [
+        "fastadmin",
+        "thinkphp"
+    ],
+    "autoload": {
+        "files": [
+            "./utils/funcs.php"
+        ],
+        "psr-4": {
+            "utils\\": "utils/"
+        }
+    },
+    "license": "Apache-2.0",
+    "require": {
+        "php": ">=7.4.0",
+        "topthink/framework": "~5.0.24",
+        "topthink/think-queue": "1.1.6",
+        "topthink/think-worker": "^1.0",
+        "topthink/think-captcha": "^1.0",
+        "topthink/think-migration": "^1.0",
+        "karsonzhang/fastadmin-addons": "~1.2.4",
+        "overtrue/pinyin": "~3.0",
+        "phpoffice/phpspreadsheet": "^1.2",
+        "overtrue/wechat": "4.2.11",
+        "ext-json": "*",
+        "ext-curl": "*",
+        "ext-pdo": "*",
+        "txthinking/mailer": "^2.0",
+        "topthink/think-helper": "^3.1",
+        "topthink/think-image": "^1.0",
+        "guzzlehttp/guzzle": "^6.2",
+        "filp/whoops": "^2.14",
+        "nelexa/zip": "^3.3",
+        "easy-task/easy-task": "^2.4",
+        "zircote/swagger-php": "^4.7"
+    },
+    "config": {
+        "preferred-install": "dist",
+        "allow-plugins": {
+            "topthink/think-installer": true,
+            "easywechat-composer/easywechat-composer": false
+        }
+    }
+}

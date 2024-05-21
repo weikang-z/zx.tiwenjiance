@@ -1,0 +1,161 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "api接口",
+        "contact": {
+            "email": "zwk480314826@163.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:1882/api",
+            "description": "本地测试"
+        }
+    ],
+    "paths": {
+        "/api/mis/testswag": {
+            "post": {
+                "tags": [
+                    "测试接口分组"
+                ],
+                "summary": "测试 接口标题",
+                "description": "> 测试 描述接口;",
+                "operationId": "testswag",
+                "parameters": [
+                    {
+                        "name": "username",
+                        "in": "query",
+                        "description": "用户名",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "请求体",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "password": {
+                                        "description": "密码",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "description": "状态码",
+                                            "type": "integer"
+                                        },
+                                        "msg": {
+                                            "description": "提示信息",
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "description": "返回数据",
+                                            "properties": {
+                                                "city": {
+                                                    "description": "城市",
+                                                    "type": "string"
+                                                },
+                                                "xx": {
+                                                    "description": "详细地址",
+                                                    "type": "string"
+                                                },
+                                                "son_data": {
+                                                    "description": "子数据",
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "description": "id",
+                                                                "type": "integer"
+                                                            },
+                                                            "name": {
+                                                                "description": "名称",
+                                                                "type": "string"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/wechat/mp_openid": {
+            "get": {
+                "tags": [
+                    "微信"
+                ],
+                "summary": "获取小程序的openid",
+                "operationId": "655351f56ce20e903254e2733f1be35a",
+                "parameters": [
+                    {
+                        "name": "code",
+                        "in": "query",
+                        "description": "小程序的code",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    },
+                    "500": {
+                        "description": "系统错误"
+                    }
+                }
+            }
+        },
+        "/api/wechat/mp_exchangeMobilev3": {
+            "get": {
+                "tags": [
+                    "微信"
+                ],
+                "summary": "获取小程序的手机号",
+                "operationId": "1eb9ee19506a0f53c6d6f74264c39d74",
+                "parameters": [
+                    {
+                        "name": "code",
+                        "in": "query",
+                        "description": "小程序的code",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    },
+                    "500": {
+                        "description": "系统错误"
+                    }
+                }
+            }
+        }
+    }
+}

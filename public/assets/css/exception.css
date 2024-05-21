@@ -1,0 +1,19 @@
+.main{
+    width:900px;
+    margin: auto;
+    margin-top:20px;
+
+    font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+}
+
+h1, p{
+    font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+
+    font-size: 14px;
+    color:#606266;
+}
+
+
+.alert{
+    background-color: #DCDFE6;
+}
