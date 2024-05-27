@@ -48,7 +48,7 @@ class FamilyMember extends Base
      */
     public function list(): Json
     {
-        $data = (new FamilyMemberModel)->where('user_id', '=', $this->user->id)->field('id,avatar,nickname')->select();
+        $data = (new FamilyMemberModel)->where('user_id', '=', $this->user->id)->select();
         return self::resp(t("ok"), 1, $data);
     }
 

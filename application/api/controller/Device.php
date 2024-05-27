@@ -73,18 +73,22 @@ class Device extends Base
     {
         $validation = new Validate(
             [
-                'device_id' => 'require|number',
-                'fm_id' => 'require|number',
-                'temp_oc' => 'require|number',
-                'time' => 'require|number',
+                "device_id" => "require|number",
+                "fm_id" => "require|number",
+                "temp_oc" => "require|number",
+                "time" => "require|number",
             ],
             [
-                'device_id.require' => t("device", "uptemp", "device_id require"),
-                'fm_id.require' => t("device", "uptemp", "fm_id require"),
-                'temp_oc.require' => t("device", "uptemp", "temp_oc require"),
-                'temp_oc.number' => t("device", "uptemp", "temp_oc number"),
-                'time.require' => t("device", "uptemp", "time require"),
-                'time.number' => t("device", "uptemp", "time number"),
+                "device_id.require" => t(
+                    "device",
+                    "uptemp",
+                    "device_id require"
+                ),
+                "fm_id.require" => t("device", "uptemp", "fm_id require"),
+                "temp_oc.require" => t("device", "uptemp", "temp_oc require"),
+                "temp_oc.number" => t("device", "uptemp", "temp_oc number"),
+                "time.require" => t("device", "uptemp", "time require"),
+                "time.number" => t("device", "uptemp", "time number"),
             ]
         );
 
@@ -93,17 +97,22 @@ class Device extends Base
         }
 
         // 限制10秒最多提交一次
-        $ThresholdCacheName = sprintf("uptime_tc_%s_%s_%s", $this->user->id, $this->p['device_id'], $this->p['fm_id']);
+        $ThresholdCacheName = sprintf(
+            "uptime_tc_%s_%s_%s",
+            $this->user->id,
+            $this->p["device_id"],
+            $this->p["fm_id"]
+        );
         if (cache($ThresholdCacheName)) {
             return self::resp(t("device", "uptemp", "up more"), 1);
         }
 
         FamilyTempLogModel::create([
-            'user_id' => $this->user->id,
-            'fm_id' => $this->p['fm_id'],
-            'device_id' => $this->p['device_id'],
-            'temp' => $this->p['temp_oc'],
-            'up_time' => $this->p['time'],
+            "user_id" => $this->user->id,
+            "fm_id" => $this->p["fm_id"],
+            "device_id" => $this->p["device_id"],
+            "temp" => $this->p["temp_oc"],
+            "up_time" => $this->p["time"],
         ]);
         cache($ThresholdCacheName, 0x1, 10);
         return self::resp(t("device", "uptemp", "ok"), 1);
@@ -111,26 +120,26 @@ class Device extends Base
 
     public function temp_log(): Json
     {
-        $fm_id = $this->p['fm_id'] ?? null;
+        $fm_id = $this->p["fm_id"] ?? null;
         if (empty($fm_id)) {
             return self::resp(t("device", "temp_log", "fm_id require"), 0);
         }
 
         $data = FamilyTempLogModel::where(function ($q) use ($fm_id) {
-            $q->where('fm_id', $fm_id);
+            $q->where("fm_id", $fm_id);
 
-            $start_time = $this->p['start_time'] ?? null;
+            $start_time = $this->p["start_time"] ?? null;
             if ($start_time) {
-                $q->where('up_time', '>=', datetime($start_time));
+                $q->where("up_time", ">=", datetime($start_time));
             }
 
-            $end_time = $this->p['end_time'] ?? null;
+            $end_time = $this->p["end_time"] ?? null;
             if ($end_time) {
-                $q->where('up_time', '<=', datetime($end_time));
+                $q->where("up_time", "<=", datetime($end_time));
             }
-
-        })->field('temp,up_time')
-            ->order('up_time asc')
+        })
+            ->field("temp,up_time")
+            ->order("up_time asc")
             ->select();
 
         return self::resp(t("ok"), 1, $data);
