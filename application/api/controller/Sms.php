@@ -46,7 +46,7 @@ class Sms extends Base
         $cl_params = json_encode([
             'account' => 'N313995_N4557746',
             'password' => '2j2bYJDtVx951f',
-            'msg' => "【睿知健康】您的验证码为：{code}，请勿泄露于他人！",
+            'msg' => "【睿知健康】您的验证码为：{$code}，请勿泄露于他人！",
             'phone' => $req->param('mobile'),
         ], 256);
 
