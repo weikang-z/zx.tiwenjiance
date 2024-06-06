@@ -167,7 +167,7 @@
 		/**
 		 * 设置http请求的参数,get或post.
 		 *
-		 * @param array $params
+		 * @param array|string $params
 		 *
 		 * @return $this
 		 */

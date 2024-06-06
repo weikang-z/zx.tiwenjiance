@@ -2,6 +2,7 @@
 
 namespace app\api\controller;
 
+use app\common\library\Curl;
 use think\Request;
 use think\response\Json;
 use think\Validate;
@@ -40,11 +41,30 @@ class Sms extends Base
         $code = getCode(4, 0);
         cache($cache_key, $code, 600);
 
-        // todo 发送短信
+        $url = "https://smssh1.253.com/msg/v1/send/json";
+
+        $cl_params = json_encode([
+            'account' => 'N313995_N4557746',
+            'password' => '2j2bYDtVx951f',
+            'msg' => "【睿知健康】您的验证码为：{code}，请勿泄露于他人！",
+            'phone' => $req->param('mobile'),
+        ], 256);
+
+
+
+        $res = (new Curl())
+            ->setHeader([
+                'Content-Type: application/json',
+            ])
+            ->setParams($cl_params)->post($url, "json");
+
+        if ($res['code'] <> '0') {
+            back($res['errorMsg'], 0);
+        }
 
         cache('send' . $req->param('type') . $req->param('mobile'), 1, 60);
         return self::resp(t("sms", "ok"), 1, [
-            'code' => $code
+            'code' => '******'
         ]);
 
     }
