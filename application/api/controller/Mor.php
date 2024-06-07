@@ -109,14 +109,37 @@ class Mor extends Base
             return self::resp(t("mor", "edit", "not found"), 1);
         }
 
-        $row->fm_id = $this->p['data']['fm_id']?? $row->fm_id;
-        $row->utime = $this->p['data']['time']?? $row->utime;
-        $row->symptoms = $this->p['data']['symptoms']?? $row->symptoms;
-        $row->cooling_mode = $this->p['data']['cooling_mode']?? $row->cooling_mode;
-        $row->remark = $this->p['data']['remark']?? $row->remark;
+        $row->fm_id = $this->p['data']['fm_id'] ?? $row->fm_id;
+        $row->utime = $this->p['data']['time'] ?? $row->utime;
+        $row->symptoms = $this->p['data']['symptoms'] ?? $row->symptoms;
+        $row->cooling_mode = $this->p['data']['cooling_mode'] ?? $row->cooling_mode;
+        $row->remark = $this->p['data']['remark'] ?? $row->remark;
         $row->save();
 
         return self::resp(t("mor", "edit", "ok"), 1);
+    }
+
+    public function checkbox_data($type)
+    {
+        if (!in_array($type, ['symptoms', 'cooling_mode'])) {
+            return self::resp(t("mor", "checkbox_data", "type error"), 1);
+        }
+        $data = Db::name($type . '_data')->where("switch", 1)
+            ->order("weigh desc")
+            ->field('text_zh,text_en')
+            ->select();
+
+        $_data = [];
+        foreach ($data as $v) {
+            if ($this->ulang == "zh") {
+                $_data[] = $v['text_zh'];
+            } else {
+                $_data[] = $v['text_en'];
+            }
+        }
+
+        return self::resp("ok", 1, $_data);
+
     }
 
 }
