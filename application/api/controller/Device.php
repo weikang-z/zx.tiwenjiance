@@ -144,4 +144,22 @@ class Device extends Base
 
         return self::resp(t("ok"), 1, $data);
     }
+
+    public function temp_atest_log() :Json
+    {
+        $fm_id = $this->p["fm_id"] ?? null;
+        if (empty($fm_id)) {
+            return self::resp(t("device", "temp_log", "fm_id require"), 0);
+        }
+
+        $data = FamilyTempLogModel::where(function ($q) use ($fm_id) {
+            $q->where("fm_id", $fm_id);
+        })
+            ->field("temp,up_time")
+            ->order("up_time desc")
+            ->find();
+
+
+        return self::resp(t("ok"), 1,$data );
+    }
 }
