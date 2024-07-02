@@ -50,8 +50,6 @@ class Sms extends Base
             'phone' => $req->param('mobile'),
         ], 256);
 
-
-
         $res = (new Curl())
             ->setHeader([
                 'Content-Type: application/json',
@@ -59,7 +57,7 @@ class Sms extends Base
             ->setParams($cl_params)->post($url, "json");
 
         if ($res['code'] <> '0') {
-            back('sms error:'.$res['errorMsg'], 0);
+            back('sms error:' . $res['errorMsg'], 0);
         }
 
         cache('send' . $req->param('type') . $req->param('mobile'), 1, 60);
@@ -68,5 +66,6 @@ class Sms extends Base
         ]);
 
     }
+
 
 }
