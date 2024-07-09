@@ -10,9 +10,11 @@ use think\Db;
 class Report extends Base
 {
 
-    public function search()
+    public function search(): \think\response\Json
     {
-        $data = FamilyTempLogModel::where(function ($q) {
+
+        // 查询该数据的最后一条guid
+        $last_data = FamilyTempLogModel::where(function ($q) {
             $q->where('fm_id', $this->p['fm_id']);
 
             $start_time = $this->p['start_time'] ?? null;
@@ -24,6 +26,26 @@ class Report extends Base
             if ($end_time) {
                 $q->where('up_time', '<=', datetime($end_time));
             }
+        })
+            ->order("up_time desc")
+            ->find();
+
+        $guid = $last_data['guid'] ?? null;
+
+        $data = FamilyTempLogModel::where(function ($q) use ($guid) {
+            $q->where('fm_id', $this->p['fm_id']);
+
+            $start_time = $this->p['start_time'] ?? null;
+            if ($start_time) {
+                $q->where('up_time', '>=', datetime($start_time));
+            }
+
+            $end_time = $this->p['end_time'] ?? null;
+            if ($end_time) {
+                $q->where('up_time', '<=', datetime($end_time));
+            }
+
+            $q->where('guid', $guid);
         })
             ->order("up_time asc")
             ->field("temp,up_time")
@@ -105,7 +127,8 @@ class Report extends Base
             'last_remark' => FamilyMorModel::where("fm_id", $this->p['fm_id'])->order("id desc")
                 ->field("utime,symptoms,cooling_mode,remark")
                 ->find(),
-            'create_time' =>  date("Y.m.d H:i:s", time()),
+            'monitoring_time' => $last_data['up_time'],
+            'create_time' => date("Y.m.d H:i:s", time()),
         ]);
 
     }

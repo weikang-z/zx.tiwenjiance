@@ -77,6 +77,7 @@ class Device extends Base
                 "fm_id" => "require|number",
                 "temp_oc" => "require|number",
                 "time" => "require|number",
+                "guid" => 'require',
             ],
             [
                 "device_id.require" => t(
@@ -113,6 +114,7 @@ class Device extends Base
             "device_id" => $this->p["device_id"],
             "temp" => $this->p["temp_oc"],
             "up_time" => $this->p["time"],
+            "guid" => $this->p["guid"] ?? 'none',
         ]);
         cache($ThresholdCacheName, 0x1, 10);
         return self::resp(t("device", "uptemp", "ok"), 1);
@@ -145,7 +147,7 @@ class Device extends Base
         return self::resp(t("ok"), 1, $data);
     }
 
-    public function temp_atest_log() :Json
+    public function temp_atest_log(): Json
     {
         $fm_id = $this->p["fm_id"] ?? null;
         if (empty($fm_id)) {
@@ -159,7 +161,6 @@ class Device extends Base
             ->order("up_time desc")
             ->find();
 
-
-        return self::resp(t("ok"), 1,$data );
+        return self::resp(t("ok"), 1, $data);
     }
 }
