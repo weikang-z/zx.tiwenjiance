@@ -127,7 +127,7 @@ class Report extends Base
             'last_remark' => FamilyMorModel::where("fm_id", $this->p['fm_id'])->order("id desc")
                 ->field("utime,symptoms,cooling_mode,remark")
                 ->find(),
-            'monitoring_time' => $last_data['up_time'],
+            'monitoring_time' => date("Y.m.d H:i:s", strtotime($last_data['up_time'])),
             'create_time' => date("Y.m.d H:i:s", time()),
         ]);
 
