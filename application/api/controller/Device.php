@@ -120,6 +120,60 @@ class Device extends Base
         return self::resp(t("device", "uptemp", "ok"), 1);
     }
 
+    public function uptemps(): Json
+    {
+        $validation = new Validate(
+            [
+                "device_id" => "require|number",
+                "fm_id" => "require|number",
+                "guid" => 'require',
+            ],
+            [
+                "device_id.require" => t(
+                    "device",
+                    "uptemp",
+                    "device_id require"
+                ),
+                "fm_id.require" => t("device", "uptemp", "fm_id require"),
+            ]
+        );
+
+        if (!$validation->check($this->p)) {
+            return self::resp($validation->getError());
+        }
+
+        // 限制10秒最多提交一次
+        $ThresholdCacheName = sprintf(
+            "uptime_tc_%s_%s_%s",
+            $this->user->id,
+            $this->p["device_id"],
+            $this->p["fm_id"]
+        );
+        if (cache($ThresholdCacheName)) {
+            return self::resp(t("device", "uptemp", "up more"), 1);
+        }
+
+        $temps = $this->p['temps'];
+        if (empty($temps)) {
+            return self::resp(t("device", "uptemp", "temp_oc require"), 0);
+        }
+
+        foreach ($temps as $v) {
+            FamilyTempLogModel::create([
+                "user_id" => $this->user->id,
+                "fm_id" => $this->p["fm_id"],
+                "device_id" => $this->p["device_id"],
+                "temp" => $v["temp_oc"],
+                "up_time" => $v["time"],
+                "guid" => $this->p["guid"] ?? 'none',
+            ]);
+        }
+
+
+        cache($ThresholdCacheName, 0x1, 10);
+        return self::resp(t("device", "uptemp", "ok"), 1);
+    }
+
     public function temp_log(): Json
     {
         $fm_id = $this->p["fm_id"] ?? null;
