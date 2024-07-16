@@ -123,16 +123,6 @@ class Device extends Base
     public function uptemps(): Json
     {
 
-        // 限制10秒最多提交一次
-        $ThresholdCacheName = sprintf(
-            "uptime_tc_%s_%s_%s",
-            $this->user->id,
-            $this->p["device_id"],
-            $this->p["fm_id"]
-        );
-        if (cache($ThresholdCacheName)) {
-            return self::resp(t("device", "uptemp", "up more"), 1);
-        }
 
         $temps = $this->p['temps'];
         if (empty($temps)) {
@@ -151,7 +141,6 @@ class Device extends Base
         }
 
 
-        cache($ThresholdCacheName, 0x1, 10);
         return self::resp(t("device", "uptemp", "ok"), 1);
     }
 
