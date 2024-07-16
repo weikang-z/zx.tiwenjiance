@@ -122,25 +122,6 @@ class Device extends Base
 
     public function uptemps(): Json
     {
-        $validation = new Validate(
-            [
-                "device_id" => "require|number",
-                "fm_id" => "require|number",
-                "guid" => 'require',
-            ],
-            [
-                "device_id.require" => t(
-                    "device",
-                    "uptemp",
-                    "device_id require"
-                ),
-                "fm_id.require" => t("device", "uptemp", "fm_id require"),
-            ]
-        );
-
-        if (!$validation->check($this->p)) {
-            return self::resp($validation->getError());
-        }
 
         // 限制10秒最多提交一次
         $ThresholdCacheName = sprintf(
@@ -161,11 +142,11 @@ class Device extends Base
         foreach ($temps as $v) {
             FamilyTempLogModel::create([
                 "user_id" => $this->user->id,
-                "fm_id" => $this->p["fm_id"],
+                "fm_id" => $v["fm_id"],
                 "device_id" => $this->p["device_id"],
                 "temp" => $v["temp_oc"],
                 "up_time" => $v["time"],
-                "guid" => $this->p["guid"] ?? 'none',
+                "guid" => $v["guid"] ?? 'none',
             ]);
         }
 
