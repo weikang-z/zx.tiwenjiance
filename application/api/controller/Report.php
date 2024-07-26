@@ -13,6 +13,7 @@ class Report extends Base
     public function search(): \think\response\Json
     {
 
+
         // 查询该数据的最后一条guid
         $last_data = FamilyTempLogModel::where(function ($q) {
             $q->where('fm_id', $this->p['fm_id']);
@@ -27,8 +28,9 @@ class Report extends Base
                 $q->where('up_time', '<=', datetime($end_time));
             }
         })
-            ->order("up_time desc")
+            ->order("up_time asc")
             ->find();
+
 
         $guid = $last_data['guid'] ?? null;
 
