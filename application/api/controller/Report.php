@@ -28,7 +28,7 @@ class Report extends Base
                 $q->where('up_time', '<=', datetime($end_time));
             }
         })
-            ->order("up_time asc")
+            ->order("up_time desc")
             ->find();
 
 
