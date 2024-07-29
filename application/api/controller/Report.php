@@ -55,6 +55,8 @@ class Report extends Base
 
         $data = collection((array)$data)->toArray();
 
+//        dd($data);
+
         if (empty($data)) {
             return self::resp(t("report", "search", "no data"), 1, []);
         }
@@ -129,7 +131,7 @@ class Report extends Base
             'last_remark' => FamilyMorModel::where("fm_id", $this->p['fm_id'])->order("id desc")
                 ->field("utime,symptoms,cooling_mode,remark")
                 ->find(),
-            'monitoring_time' => date("Y.m.d H:i:s", strtotime($last_data['up_time'])),
+            'monitoring_time' => date("Y.m.d H:i:s", strtotime($data[0]['up_time'])),
             'create_time' => date("Y.m.d H:i:s", time()),
         ]);
 
