@@ -15,24 +15,24 @@ class Report extends Base
 
 
         // 查询该数据的最后一条guid
-        $last_data = FamilyTempLogModel::where(function ($q) {
-            $q->where('fm_id', $this->p['fm_id']);
-
-            $start_time = $this->p['start_time'] ?? null;
-            if ($start_time) {
-                $q->where('up_time', '>=', datetime($start_time));
-            }
-
-            $end_time = $this->p['end_time'] ?? null;
-            if ($end_time) {
-                $q->where('up_time', '<=', datetime($end_time));
-            }
-        })
-            ->order("up_time desc")
-            ->find();
-
-
-        $guid = $last_data['guid'] ?? null;
+//        $last_data = FamilyTempLogModel::where(function ($q) {
+//            $q->where('fm_id', $this->p['fm_id']);
+//
+//            $start_time = $this->p['start_time'] ?? null;
+//            if ($start_time) {
+//                $q->where('up_time', '>=', datetime($start_time));
+//            }
+//
+//            $end_time = $this->p['end_time'] ?? null;
+//            if ($end_time) {
+//                $q->where('up_time', '<=', datetime($end_time));
+//            }
+//        })
+//            ->order("up_time desc")
+//            ->find();
+//
+//
+//        $guid = $last_data['guid'] ?? null;
 
         $data = FamilyTempLogModel::where(function ($q) use ($guid) {
             $q->where('fm_id', $this->p['fm_id']);
@@ -47,7 +47,7 @@ class Report extends Base
                 $q->where('up_time', '<=', datetime($end_time));
             }
 
-            $q->where('guid', $guid);
+//            $q->where('guid', $guid);
         })
             ->order("up_time asc")
             ->field("temp,up_time")
