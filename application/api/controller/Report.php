@@ -34,7 +34,7 @@ class Report extends Base
 //
 //        $guid = $last_data['guid'] ?? null;
 
-        $data = FamilyTempLogModel::where(function ($q) use ($guid) {
+        $data = FamilyTempLogModel::where(function ($q) {
             $q->where('fm_id', $this->p['fm_id']);
 
             $start_time = $this->p['start_time'] ?? null;
