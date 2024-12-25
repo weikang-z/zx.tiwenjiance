@@ -36,7 +36,8 @@
         "filp/whoops": "^2.14",
         "nelexa/zip": "^3.3",
         "easy-task/easy-task": "^2.4",
-        "zircote/swagger-php": "^4.7"
+        "zircote/swagger-php": "^4.7",
+        "giggsey/libphonenumber-for-php": "^8.13"
     },
     "config": {
         "preferred-install": "dist",

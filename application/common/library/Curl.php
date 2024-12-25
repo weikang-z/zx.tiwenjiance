@@ -335,6 +335,8 @@
 
 			$content = curl_exec($this->ch);
 
+            dd($content);
+
 
 			$status = curl_getinfo($this->ch);
 

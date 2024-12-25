@@ -77,7 +77,7 @@ class Device extends Base
                 "fm_id" => "require|number",
                 "temp_oc" => "require|number",
                 "time" => "require|number",
-                "guid" => 'require',
+                "guid" => "require",
             ],
             [
                 "device_id.require" => t(
@@ -114,7 +114,7 @@ class Device extends Base
             "device_id" => $this->p["device_id"],
             "temp" => $this->p["temp_oc"],
             "up_time" => $this->p["time"],
-            "guid" => $this->p["guid"] ?? 'none',
+            "guid" => $this->p["guid"] ?? "none",
         ]);
         cache($ThresholdCacheName, 0x1, 10);
         return self::resp(t("device", "uptemp", "ok"), 1);
@@ -122,9 +122,7 @@ class Device extends Base
 
     public function uptemps(): Json
     {
-
-
-        $temps = $this->p['temps'];
+        $temps = $this->p["temps"];
         if (empty($temps)) {
             return self::resp(t("device", "uptemp", "temp_oc require"), 0);
         }
@@ -136,10 +134,9 @@ class Device extends Base
                 "device_id" => $this->p["device_id"],
                 "temp" => $v["temp_oc"],
                 "up_time" => $v["time"],
-                "guid" => $v["guid"] ?? 'none',
+                "guid" => $v["guid"] ?? "none",
             ]);
         }
-
 
         return self::resp(t("device", "uptemp", "ok"), 1);
     }
@@ -185,6 +182,6 @@ class Device extends Base
             ->order("up_time desc")
             ->find();
 
-        return self::resp(t("ok"), 1, $data);
+        return self::resp(t("ok"), 1, empty($data) ? [] : $data);
     }
 }
